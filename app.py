@@ -1,8 +1,7 @@
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, jsonify
 import geopandas as gpd
 from shapely.geometry import Point
 from flask_cors import CORS
-import json
 
 app = Flask(__name__)
 CORS(app)
@@ -28,10 +27,8 @@ def zonas():
             "barrio": barrio.iloc[0]["BARRIO"] if not barrio.empty else "Sin barrio",
             "villa": villa.iloc[0]["NOMBRE_LOT"] if not villa.empty else "Sin villa"
         }
-        
-        response = make_response(json.dumps(data))
-        response.headers["Content-Type"] = "application/json"
-        return response
+
+        return jsonify(data)
 
     except Exception as e:
         return jsonify({"error": str(e)}), 400
