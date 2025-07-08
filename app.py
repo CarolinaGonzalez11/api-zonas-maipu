@@ -6,7 +6,6 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# Cargar capas
 cuadrantes = gpd.read_file("geojson/cuadrantes.geojson").to_crs(epsg=4326)
 barrios = gpd.read_file("geojson/barrios.geojson").to_crs(epsg=4326)
 villas = gpd.read_file("geojson/villas.geojson").to_crs(epsg=4326)
